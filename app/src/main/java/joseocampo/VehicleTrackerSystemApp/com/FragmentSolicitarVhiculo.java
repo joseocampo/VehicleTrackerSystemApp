@@ -31,6 +31,8 @@ public class FragmentSolicitarVhiculo extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    //este es un comentario de prueba para hacer commit.
+
     private Spinner lista;
     private String[] vehiculos = {"Vehiculos disponibles","Nissan","Toyota","Nissan Versa","Susuki","Chevrolet","Huydani"};
 
