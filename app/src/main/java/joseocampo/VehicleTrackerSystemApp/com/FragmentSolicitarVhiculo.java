@@ -9,8 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONObject;
 
 
 /**
@@ -21,7 +28,8 @@ import android.widget.Toast;
  * Use the {@link FragmentSolicitarVhiculo#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentSolicitarVhiculo extends Fragment {
+public class FragmentSolicitarVhiculo extends Fragment
+ implements   Response.Listener<JSONObject>, Response.ErrorListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +39,10 @@ public class FragmentSolicitarVhiculo extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     //este es un comentario de prueba para hacer commit.
+    private EditText campoDestino,campoJustificacion;
+    private Button btnRealizarSolicitd;
 
     private Spinner lista;
     private String[] vehiculos = {"Vehiculos disponibles","Nissan","Toyota","Nissan Versa","Susuki","Chevrolet","Huydani"};
@@ -76,11 +87,32 @@ public class FragmentSolicitarVhiculo extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_fragment_solicitar_vhiculo, container, false);
 
         lista = (Spinner) vista.findViewById(R.id.listaVehiculos);
+        campoDestino = (EditText)vista.findViewById(R.id.campoDestino);
+        campoJustificacion = (EditText)vista.findViewById(R.id.campoJustificacion);
+        btnRealizarSolicitd = (Button)vista.findViewById(R.id.btnRealizarSolicitud);
 
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,vehiculos);
         lista.setAdapter(adaptador);
+        btnRealizarSolicitd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cargarWebService();
+            }
+        });
 
         return vista;
+    }
+    private void cargarWebService() {
+        Toast.makeText(getContext(),"Esperando que Tony se conecte a la bd",Toast.LENGTH_LONG).show();
+
+    }
+    @Override
+    public void onResponse(JSONObject response) {
+
+    }
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -106,6 +138,9 @@ public class FragmentSolicitarVhiculo extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
+
 
     /**
      * This interface must be implemented by activities that contain this
