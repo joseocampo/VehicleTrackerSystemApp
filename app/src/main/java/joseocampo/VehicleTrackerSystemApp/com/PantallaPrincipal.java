@@ -90,6 +90,7 @@ public class PantallaPrincipal extends AppCompatActivity
             fragmentoSeleccionado=true;
 
         } else if (id == R.id.reporteAveria) {
+            //probando commits
 
         } else if (id == R.id.ver_destino) {
 
