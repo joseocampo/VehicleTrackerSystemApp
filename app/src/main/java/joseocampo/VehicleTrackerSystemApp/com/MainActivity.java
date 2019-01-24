@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String user= et_id.getText().toString();
+                final String username= et_id.getText().toString();
                 final String password= et_pass.getText().toString();
 
                 Response.Listener<String> responseListener= new Response.Listener<String>() {
@@ -45,13 +45,7 @@ public class MainActivity extends AppCompatActivity {
                             boolean success= jsonResponse.getBoolean("success");
 
                             if(success){
-                               int role= jsonResponse.getInt("role");
-
                                 Intent intent= new Intent(MainActivity.this, PantallaPrincipal.class);
-                                intent.putExtra("user", user);
-                                intent.putExtra("role", role);
-                                intent.putExtra("password", password);
-
                                 MainActivity.this.startActivity(intent);
 
                             }else{
@@ -65,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
-                LoginRequest loginRequest= new LoginRequest(user, password, responseListener);
+                LoginRequest loginRequest= new LoginRequest(username, password, responseListener);
                 RequestQueue queue= Volley.newRequestQueue(MainActivity.this);
                 queue.add(loginRequest);
 
